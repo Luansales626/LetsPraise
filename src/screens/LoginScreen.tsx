@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, StatusBar } from 'react-native';
 
+// @ts-ignore
+//import { VALID_EMAIL, VALID_PASSWORD } from 'react-native-dotenv';
+
+
 interface Props {
   navigation: any;
 }
@@ -8,11 +12,22 @@ interface Props {
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleLogin = () => {
+    const validEmail = 'admin@admin.com';
+    const validPassword = 'admin';
+
     console.log('Email:', email);
     console.log('Password:', password);
-    navigation.navigate('Home');
+
+    if(email === validEmail && password == validPassword) {
+      setIsAuthenticated(true);
+      navigation.navigate('Home');
+    } else {
+      setIsAuthenticated(false);
+    }
+    
   };
 
   const navigateToSignUp = () => {
@@ -22,13 +37,14 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#2C313F" />
+
       <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="#fff"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={email => setEmail(email)}
         autoCapitalize="none"
       />
       <TextInput
@@ -36,13 +52,13 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         placeholder="Password"
         placeholderTextColor="#fff"
         value={password}
-        onChangeText={setPassword}
+        onChangeText={password => setPassword(password)}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={navigateToSignUp}>
+      <TouchableOpacity style={styles.button} onPress={() => navigateToSignUp()}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>

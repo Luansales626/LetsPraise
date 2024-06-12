@@ -22,12 +22,12 @@ const Header: React.FC = () => {
           <Text style={[styles.logoText, { color: '#007bff' }]}>Praise</Text>
         </View>
         <View style={styles.rightContainer}>
-          <TouchableOpacity onPress={toggleSearch}>
+          {/* <TouchableOpacity onPress={toggleSearch}>
             <FontAwesome name="search" size={24} color="white" style={styles.icon} />
           </TouchableOpacity>
           <TouchableOpacity onPress={toggleFilterModal}>
             <FontAwesome name="filter" size={24} color="white" style={styles.icon} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity onPress={() => {}}>
             <FontAwesome name="user" size={24} color="white" style={styles.icon} />
           </TouchableOpacity>

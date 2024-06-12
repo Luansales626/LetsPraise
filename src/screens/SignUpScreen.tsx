@@ -29,7 +29,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
         placeholder="Email"
         placeholderTextColor="#fff"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={email => setEmail(email)}
         autoCapitalize="none"
       />
       <TextInput
@@ -37,7 +37,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
         placeholder="Password"
         placeholderTextColor="#fff"
         value={password}
-        onChangeText={setPassword}
+        onChangeText={password => setPassword(password)}
         secureTextEntry
       />
       <TextInput
@@ -45,10 +45,10 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
         placeholder="Confirm Password"
         placeholderTextColor="#fff"
         value={confirmPassword}
-        onChangeText={setConfirmPassword}
+        onChangeText={() => setConfirmPassword(password)}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+      <TouchableOpacity style={styles.button} onPress={() => handleSignUp()}>
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
